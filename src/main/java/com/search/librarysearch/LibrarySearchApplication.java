@@ -1,4 +1,4 @@
-package org.search.librarysearch;
+package com.search.librarysearch;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
