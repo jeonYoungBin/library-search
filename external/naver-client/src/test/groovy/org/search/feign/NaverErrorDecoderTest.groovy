@@ -16,7 +16,7 @@ class NaverErrorDecoderTest extends Specification {
         def inputStream = new ByteArrayInputStream()
         def response = Response.builder()
                 .status(400)
-        .request(Request.create(Request.HttpMethod.GET, "testUrl", [:], null as Request.Body, null))
+                .request(Request.create(Request.HttpMethod.GET, "testUrl", [:], null as Request.Body, null))
                 .body(responseBody)
                 .build()
 

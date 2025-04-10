@@ -12,6 +12,6 @@ public class NaverBookResponse {
     private int total;
     private int start;
     private String display;
-    private List<Item> itmes;
+    private List<Item> items;
 
 }

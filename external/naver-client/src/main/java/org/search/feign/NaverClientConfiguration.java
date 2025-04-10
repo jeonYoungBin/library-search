@@ -15,7 +15,7 @@ public class NaverClientConfiguration {
     }
 
     @Bean
-    public NaverErrorDecoder naverErrorEecoder(ObjectMapper objectMapper) {
+    public NaverErrorDecoder naverErrorDecoder(ObjectMapper objectMapper) {
         return new NaverErrorDecoder(objectMapper);
     }
 
