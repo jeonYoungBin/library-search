@@ -4,13 +4,16 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import feign.Request
 import feign.Response
 import org.search.NaverErrorResponse
+import org.search.library.ApiException
+import org.search.library.ErrorType
+import org.springframework.http.HttpStatus
 import spock.lang.Specification
 
 class NaverErrorDecoderTest extends Specification {
     ObjectMapper objectMapper = Mock()
     NaverErrorDecoder errorDecoder = new NaverErrorDecoder(objectMapper)
 
-    def "에러디코더에서 에러발생시 RunTimeException이 throw된다."() {
+    def "에러디코더에서 에러발생시 ApiException이 throw된다."() {
         given:
         def responseBody = Mock(Response.Body)
         def inputStream = new ByteArrayInputStream()
@@ -27,8 +30,12 @@ class NaverErrorDecoderTest extends Specification {
         errorDecoder.decode(_ as String, response)
 
         then:
-        RuntimeException e = thrown()
-        e.message == "error!!"
+        ApiException e = thrown()
+        verifyAll {
+            e.errMessage == "error!!"
+            e.httpStatus == HttpStatus.BAD_REQUEST
+            e.errorType == ErrorType.EXTERNAL_API_ERROR
+        }
     }
 
 }
