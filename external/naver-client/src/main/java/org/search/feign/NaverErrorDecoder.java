@@ -27,8 +27,8 @@ public class NaverErrorDecoder implements ErrorDecoder {
             NaverErrorResponse errorResponse = objectMapper.readValue(body, NaverErrorResponse.class);
             throw new ApiException(errorResponse.getErrorMessage(), ErrorType.EXTERNAL_API_ERROR, HttpStatus.valueOf(response.status()));
         } catch (IOException e) {
-            log.error("[Naver] 에러 메시지 파싱 에러 code ={}, request ={}, methodKey ={}, errorMsg={}", response.status(), response.request(), methodKey, e.getMessage());
-            throw new ApiException("네이버 메시지 파싱 에러", ErrorType.EXTERNAL_API_ERROR, HttpStatus.valueOf(response.status()));
+            log.error("[Naver] 에러 메세지 파싱 에러 code={}, request={}, methodKey={}, errorMessage={}", response.status(), response.request(), methodKey, e.getMessage());
+            throw new ApiException("네이버 메세지 파싱에러", ErrorType.EXTERNAL_API_ERROR, HttpStatus.valueOf(response.status()));
         }
     }
 }
