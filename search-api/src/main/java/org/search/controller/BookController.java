@@ -1,6 +1,8 @@
 package org.search.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.search.controller.request.SearchRequest;
 import org.search.controller.response.PageResult;
 import org.search.controller.response.SearchResponse;
 import org.search.service.BookQueryService;
@@ -16,9 +18,7 @@ public class BookController {
     private final BookQueryService bookQueryService;
 
     @GetMapping
-    public PageResult<SearchResponse> search(@RequestParam(value = "query")String query,
-                                             @RequestParam(value = "page", defaultValue = "1")int page,
-                                             @RequestParam(value = "size", defaultValue = "10")int size) {
-        return bookQueryService.search(query, size, page);
+    public PageResult<SearchResponse> search(@Valid SearchRequest searchRequest) {
+        return bookQueryService.search(searchRequest.getQuery(), searchRequest.getPage(), searchRequest.getSize());
     }
 }

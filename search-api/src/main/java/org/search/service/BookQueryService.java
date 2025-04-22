@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookQueryService {
     private final BookRepository bookRepository;
-    public PageResult<SearchResponse> search(String query, int page, int size) {
+    public PageResult<SearchResponse> search(String query, Integer page, Integer size) {
         return bookRepository.search(query, page, size);
     }
 }

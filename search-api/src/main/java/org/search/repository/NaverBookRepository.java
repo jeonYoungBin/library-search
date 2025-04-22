@@ -7,10 +7,12 @@ import org.search.controller.response.PageResult;
 import org.search.controller.response.SearchResponse;
 import org.search.feign.NaverClient;
 import org.search.util.DateTimeUtils;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Repository
 @RequiredArgsConstructor
 public class NaverBookRepository implements BookRepository {
     private final NaverClient naverClient;

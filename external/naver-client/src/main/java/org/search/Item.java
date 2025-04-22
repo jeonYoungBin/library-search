@@ -14,7 +14,7 @@ public class Item {
     private String author;
     private String discount;
     private String publisher;
-    @JsonProperty(namespace = "pubdate")
+    @JsonProperty("pubdate")
     private String pubDate;
     private String isbn;
     private String description;
