@@ -45,4 +45,21 @@ class DailyStatRepositoryTest extends Specification {
         }
 
     }
+
+    def "쿼리의 카운트를 조회한다."() {
+        given:
+        def givenQuery = "HTTP"
+        def now = LocalDateTime.of(2025,4 ,29,0,0,0)
+        def stat1 = new DailyStat(givenQuery, now.plusMinutes(10))
+        def stat2 = new DailyStat(givenQuery, now.minusMinutes(1))
+        def stat3 = new DailyStat(givenQuery, now.plusMinutes(10))
+        def stat4 = new DailyStat("JAVA", now.plusMinutes(10))
+
+        def save = dailyStatRepository.saveAll([stat1, stat2, stat3, stat4])
+        when:
+        def result = dailyStatRepository.countByQueryAndEventDateTimeBetween(givenQuery, now, now.plusDays(1))
+        then:
+        result == 2
+
+    }
 }
