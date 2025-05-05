@@ -19,8 +19,6 @@ public class SearchEventHandler {
     @Async
     @EventListener
     public void eventHandler(SearchEvent searchEvent) throws InterruptedException {
-        Thread.sleep(5000L);
-
         log.info("[SearchEventHandler] handlerEvent: {}", searchEvent);
         DailyStat dailyStat = new DailyStat(searchEvent.query(), searchEvent.timestamp());
         dailyStatCommandService.save(dailyStat);
