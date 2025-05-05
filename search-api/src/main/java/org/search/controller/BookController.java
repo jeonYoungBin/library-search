@@ -1,6 +1,7 @@
 package org.search.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -52,6 +53,11 @@ public class BookController {
         return bookApplicationService.findQueryCount(query, date);
     }
 
+    @Operation(summary = "stats ranking API", description = "상위 5개 쿼리")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = @Content(array = @ArraySchema(schema = @Schema(implementation = StatResponse.class)))),
+            @ApiResponse(responseCode = "400", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
+    })
     @GetMapping("/stats/ranking")
     public List<StatResponse> findTop5QueryStats() {
         log.info("[BookController] find top 5 query Stats");
