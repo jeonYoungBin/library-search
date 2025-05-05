@@ -1,11 +1,23 @@
 package org.search.controller.response;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Schema(description = "검색결과")
 @Builder
-public record SearchResponse(String title, String author, String publisher, LocalDate pubDate, String isbn) {
+public record SearchResponse(
+        @Schema(description = "제목", example = "HTTP완벽가이드")
+        String title,
+        @Schema(description = "저자", example = "데이빗울리")
+        String author,
+        @Schema(description = "출판사", example = "인사이트")
+        String publisher,
+        @Schema(description = "출판일", example = "2025-01-01")
+        LocalDate pubDate,
+        @Schema(description = "isbn", example = "9788966261208")
+        String isbn) {
 }
