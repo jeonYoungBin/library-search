@@ -1,4 +1,4 @@
-package org.search.library;
+package org.search.library.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

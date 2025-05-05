@@ -1,7 +1,6 @@
 package org.search.controller.config;
 
-import lombok.Getter;
-import org.search.library.ErrorType;
+import org.search.library.exception.ErrorType;
 
 public record ErrorResponse(String errMessage, ErrorType errorType) {
 }

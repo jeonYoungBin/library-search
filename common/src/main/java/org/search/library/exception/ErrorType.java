@@ -1,4 +1,4 @@
-package org.search.library;
+package org.search.library.exception;
 
 public enum ErrorType {
     EXTERNAL_API_ERROR("외부 API 호출 에러 입니다."),

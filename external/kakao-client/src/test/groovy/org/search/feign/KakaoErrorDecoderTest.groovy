@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import feign.Request
 import feign.Response
 import org.search.KakaoErrorResponse
-import org.search.library.ApiException
-import org.search.library.ErrorType
+import org.search.library.exception.ApiException
+import org.search.library.exception.ErrorType
 import org.springframework.http.HttpStatus
 import spock.lang.Specification
 

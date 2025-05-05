@@ -1,7 +1,7 @@
 package org.search.controller.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.search.library.ErrorType;
+import org.search.library.exception.ErrorType;
 
 @Schema(description = "에러응답")
 public record ErrorResponse(
