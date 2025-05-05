@@ -2,6 +2,8 @@ package org.search.service
 
 import org.search.controller.response.StatResponse
 import org.search.repository.DailyStatRepository
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Pageable
 import spock.lang.Specification
 
 import java.time.LocalDate
@@ -33,5 +35,16 @@ class DailyStatQueryServiceTest extends Specification {
 
         and:
         response.count() == expectedCount
+    }
+
+    def "findTop5Query 조회시 상위 5개 반환된다."() {
+        when:
+        dailyStatQueryService.findTop5Query()
+
+        then:
+        1 * dailyStatRepository.findTopQuery(*_) >> { Pageable pageable ->
+            assert pageable == PageRequest.of(0,5)
+        }
+
     }
 }

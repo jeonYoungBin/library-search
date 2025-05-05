@@ -4,14 +4,19 @@ import lombok.RequiredArgsConstructor;
 import org.search.controller.response.StatResponse;
 import org.search.entity.DailyStat;
 import org.search.repository.DailyStatRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class DailyStatQueryService {
+    public static final int PAGE_NUMBER = 0;
+    public static final int PAGE_SIZE = 5;
     private final DailyStatRepository dailyStatRepository;
 
     public StatResponse findQueryCount(String query, LocalDate date) {
@@ -20,5 +25,10 @@ public class DailyStatQueryService {
                 date.atTime(LocalTime.MAX));
 
         return new StatResponse(query, count);
+    }
+
+    public List<StatResponse> findTop5Query() {
+        Pageable pageable = PageRequest.of(PAGE_NUMBER, PAGE_SIZE);
+        return dailyStatRepository.findTopQuery(pageable);
     }
 }
