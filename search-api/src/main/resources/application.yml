@@ -2,9 +2,7 @@ spring:
   profiles:
     active: local
   config:
-    import:
-      - application-naver-client.yml
-      - application-kakao-client.yml
+    import: application-naver-client.yml
   datasource:
     url: jdbc:h2:tcp://localhost/~/test
     username: sa
