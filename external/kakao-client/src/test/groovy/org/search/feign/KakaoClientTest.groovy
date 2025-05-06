@@ -1,0 +1,32 @@
+package org.search.feign
+
+
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.cloud.openfeign.EnableFeignClients
+import org.springframework.test.context.ActiveProfiles
+import spock.lang.Ignore
+import spock.lang.Specification
+
+@Ignore
+@SpringBootTest(classes = KakaoClientTest.TestConfig.class)
+@ActiveProfiles("test")
+class KakaoClientTest extends Specification {
+
+    @EnableAutoConfiguration
+    @EnableFeignClients(clients = KakaoClient.class)
+    static class TestConfig {}
+
+    @Autowired
+    KakaoClient kakaoClient
+
+    def "kakao 호출"() {
+        given:
+        when:
+        def response = kakaoClient.searchBook("HTTP", 1, 10)
+
+        then:
+        response.meta.totalCount == 78
+    }
+}
