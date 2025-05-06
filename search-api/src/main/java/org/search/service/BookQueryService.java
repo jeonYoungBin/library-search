@@ -26,6 +26,7 @@ public class BookQueryService {
 
     @CircuitBreaker(name = "naverSearch", fallbackMethod = "searchFallback")
     public PageResult<SearchResponse> search(String query, Integer page, Integer size) {
+        log.info("[BookQueryService] search query:{}, page:{}, size:{}", query, page, size);
         return naverBookRepository.search(query, page, size);
     }
 

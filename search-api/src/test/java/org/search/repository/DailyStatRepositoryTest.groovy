@@ -3,6 +3,7 @@ package org.search.repository
 import jakarta.persistence.EntityManager
 import org.search.controller.response.StatResponse
 import org.search.entity.DailyStat
+import org.search.feign.KakaoClient
 import org.search.feign.NaverClient
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,7 +24,10 @@ class DailyStatRepositoryTest extends Specification {
     EntityManager entityManager
 
     @SpringBean
-    NaverClient client = Mock()
+    NaverClient naverClient = Mock()
+
+    @SpringBean
+    KakaoClient kakaoClient = Mock()
 
     def "저장후 조회가된다."() {
         given:
