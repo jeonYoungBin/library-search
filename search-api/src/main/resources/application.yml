@@ -16,6 +16,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+    show-sql: true
 resilience4j:
   circuitbreaker:
     configs:
