@@ -1,5 +1,13 @@
-bootJar.enabled = false
+bootJar.enabled = true
 jar.enabled = true
+
+bootJar {
+    archiveBaseName = 'library-search'
+    archiveVersion = '0.0.1'
+    manifest {
+        attributes 'Start-Class': 'org.search.LibararySearchApplication'
+    }
+}
 
 dependencies {
     implementation project(':common')
